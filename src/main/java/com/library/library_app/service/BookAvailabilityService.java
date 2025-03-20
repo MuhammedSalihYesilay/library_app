@@ -28,7 +28,6 @@ public class BookAvailabilityService {
         BookEntity bookEntity = bookRepository.findById(request.getBookId())
                 .orElseThrow(() -> new BookNotFoundException(request.getBookId()));
 
-        // Eğer kitap için zaten bir availability kaydı varsa, güncelle
         if(bookEntity.getAvailability() != null){
             return updateAvailability(request);
         }
@@ -90,8 +89,6 @@ public class BookAvailabilityService {
         }
     }
 
-    // BookAvailabilityEntity'deki stok yönetim metodlarına erişim sağlayan yardımcı metodlar
-    // Bunlar BookCheckoutService tarafından çağrılabilir
     @Transactional
     public BookAvailabilityEntity checkAndGetAvailability(String bookId){
         BookEntity bookEntity = bookRepository.findById(bookId)
