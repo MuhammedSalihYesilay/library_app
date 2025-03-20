@@ -60,11 +60,9 @@ public class CategoryService {
         allCategories.forEach(this::updateCategoryDetails);
     }
 
-    //Kategorideki kitapların sayısını hesaplar.
     private void updateCategoryDetails(CategoryEntity category) {
         int totalBooks = category.getBooks().size();
 
-        //Eğer kategoride en az 1 kitap varsa, kategori başlığına kitap sayısını ekler
         if (totalBooks > 0) {
             category.setTitle(category.getTitle() + "(" + totalBooks + " books)");
         }
@@ -91,7 +89,6 @@ public class CategoryService {
             throw new CategoryNotFoundException(id);
         }
 
-        // Önce book_category tablosundaki ilişkileri temizle
         categoryRepository.deleteBookCategoryRelations(id);
         categoryRepository.deleteById(id);
     }
