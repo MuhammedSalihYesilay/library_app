@@ -153,4 +153,5 @@ class UserServiceTest {
         assertThrows(CustomIllegalArgumentException.class, () ->
                 userService.deleteUserById("notFoundId"));
     }
+
 }
